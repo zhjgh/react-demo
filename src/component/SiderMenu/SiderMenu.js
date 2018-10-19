@@ -5,6 +5,7 @@ import Link from 'umi/link';
 import styles from './index.less';
 import { urlToList } from '../_utils/pathTools';
 
+const currLocale = localStorage.getItem('umi_locale')
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -78,9 +79,10 @@ export default class SiderMenu extends PureComponent {
    * @memberof SiderMenu
    */
   getMenuItemPath = item => {
+    const name = currLocale === 'zh-CN' ? item.name : item.enName;
     const itemPath = this.conversionPath(item.path);
     const icon = getIcon(item.icon);
-    const { target, name } = item;
+    const { target } = item;
     // Is it a http link
     if (/^https?:\/\//.test(itemPath)) {
       return (
@@ -112,6 +114,7 @@ export default class SiderMenu extends PureComponent {
    * get SubMenu or Item
    */
   getSubMenuOrItem = item => {
+    const name = currLocale === 'zh-CN' ? item.name : item.enName;    
     if (item.children && item.children.some(child => child.name)) {
       const childrenItems = this.getNavMenuItems(item.children);
       // 当无子菜单时就不展示菜单
@@ -122,10 +125,10 @@ export default class SiderMenu extends PureComponent {
               item.icon ? (
                 <span>
                   {getIcon(item.icon)}
-                  <span>{item.name}</span>
+                  <span>{name}</span>
                 </span>
               ) : (
-                item.name
+                name
               )
             }
             key={item.path}

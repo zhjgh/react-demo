@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import pageRoutes from './router.config';
 
 export default {
   singular: true,
@@ -10,15 +11,29 @@ export default {
       locale: {
         enable: true,
       },
+      polyfills: ['ie9'],
+      dynamicImport: {
+        webpackChunkName: true,
+        // loadingComponent: './component/PageLoading',
+      },
+      title: 'Ant Design Pro',
     }],
   ],
   alias: {
     "@": resolve(__dirname, './src'),
+    '@/util': resolve(__dirname, './src/util/'),
+    '@/service': resolve(__dirname, './src/service/'),
+    '@/component': resolve(__dirname, './src/component/'),
+    '@/common': resolve(__dirname, './src/common/'),
+    '@/service': resolve(__dirname, './src/service/'),
   },
+  // 路由配置
+  routes: pageRoutes,
   proxy: {
-    '/dev': {
-      target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
-      changeOrigin: true,
-    },
+    "/api": {
+      "target": "https://api.douban.com/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
   },
 };

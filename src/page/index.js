@@ -1,6 +1,3 @@
-import Link from 'umi/link';
+import Redirect from 'umi/redirect'
 
-export default () =>
-  <>
-    <h1>login</h1>
-  </>
+export default () => <Redirect to="/locale" />

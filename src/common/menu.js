@@ -1,3 +1,5 @@
+import { formatMessage } from 'umi/locale';
+
 /* eslint no-useless-escape:0 */
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/g;
 
@@ -8,21 +10,15 @@ export function isUrl(path) {
 const menuData = [
   {
     name: '多语言',
+    enName: 'locale',
     icon: 'dashboard',
     path: 'locale',
-    children: [
-      /* {
-        name: '工作台',
-        path: 'workplace',
-        hideInBreadcrumb: true,
-        hideInMenu: true,
-      }, */
-    ],
   },
   {
     name: '列表',
+    enName: 'list',
     icon: 'dashboard',
-    path: 'list',
+    path: 'cards',
   },
 ];
 
